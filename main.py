@@ -2,8 +2,12 @@
 def main():
     book = "books/frankenstein.txt"
     text = readBook(book)
-
-    print(letterFreq(text))
+    wc = wordCount(text)
+    letters = letterFreq(text)
+    
+    print("--- Begin report of " + book + " ---")
+    print(f"{wc} words found in the book\n\n")
+    parseOutput(letters)
 
 
 def readBook(path):
@@ -23,7 +27,21 @@ def letterFreq(text):
             letters[c] = 1
         else:
             letters[c] += 1
-    letters = dict(sorted(letters.items()))
-    return letters
+    #letters = dict(sorted(letters.items()))
+    list = []
+    for item in letters:
+        if item.isalpha():
+            list.append({"letter": item, "num": letters[item]})
+    list.sort(reverse=True, key=sort_on)   
+    return list
+
+def sort_on(dict):
+    return dict["num"]
+
+def parseOutput(letters):
+    for item in letters:
+        print("The '" + item["letter"] + "' character was found" ,  
+              item["num"] , "times")
+        
 
 main()
