@@ -6,9 +6,9 @@ def main():
     letters = letterFreq(text)
     
     print("--- Begin report of " + book + " ---")
-    print(f"{wc} words found in the book\n\n")
+    print(f"{wc} words found in the document\n\n")
     parseOutput(letters)
-
+    print("--- End report ---")
 
 def readBook(path):
     with open(path) as f:
